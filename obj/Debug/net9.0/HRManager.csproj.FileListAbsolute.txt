@@ -1,0 +1,15 @@
+C:\Users\emreo\source\repos\HRManager\HRManager\bin\Debug\net9.0\HRManager.exe
+C:\Users\emreo\source\repos\HRManager\HRManager\bin\Debug\net9.0\HRManager.deps.json
+C:\Users\emreo\source\repos\HRManager\HRManager\bin\Debug\net9.0\HRManager.runtimeconfig.json
+C:\Users\emreo\source\repos\HRManager\HRManager\bin\Debug\net9.0\HRManager.dll
+C:\Users\emreo\source\repos\HRManager\HRManager\bin\Debug\net9.0\HRManager.pdb
+C:\Users\emreo\source\repos\HRManager\HRManager\obj\Debug\net9.0\HRManager.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\emreo\source\repos\HRManager\HRManager\obj\Debug\net9.0\HRManager.AssemblyInfoInputs.cache
+C:\Users\emreo\source\repos\HRManager\HRManager\obj\Debug\net9.0\HRManager.AssemblyInfo.cs
+C:\Users\emreo\source\repos\HRManager\HRManager\obj\Debug\net9.0\HRManager.csproj.CoreCompileInputs.cache
+C:\Users\emreo\source\repos\HRManager\HRManager\obj\Debug\net9.0\HRManager.sourcelink.json
+C:\Users\emreo\source\repos\HRManager\HRManager\obj\Debug\net9.0\HRManager.dll
+C:\Users\emreo\source\repos\HRManager\HRManager\obj\Debug\net9.0\refint\HRManager.dll
+C:\Users\emreo\source\repos\HRManager\HRManager\obj\Debug\net9.0\HRManager.pdb
+C:\Users\emreo\source\repos\HRManager\HRManager\obj\Debug\net9.0\HRManager.genruntimeconfig.cache
+C:\Users\emreo\source\repos\HRManager\HRManager\obj\Debug\net9.0\ref\HRManager.dll
