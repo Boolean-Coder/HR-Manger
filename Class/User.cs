@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace HRManager.Class
 {
-    internal class Class1
+    internal class User
     {
+
     }
 }
