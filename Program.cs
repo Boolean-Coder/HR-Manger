@@ -5,8 +5,9 @@
         static void Main(string[] args)
         {
             // Globale Variablen
-            bool sysEx= false;
-            string name;
+            bool sysEx = false;
+            string benutzername="", domainname="", password="";
+            string name = $"{benutzername}@{domainname}";
             Console.WriteLine("Hallo, Manager!");
 
             // Main-Loop als Fußgesteuerte do-while
@@ -30,7 +31,7 @@
                                     |                                                                                                                                                            |
                                     |                                                         ===== Login ====                                                                                   |
                                     |                                                                                                                                                            | 
-                                    |                                                         Benutzername:                                                                                      |
+                                    |                                                         Benutzername:  {name,-30}                                                                                    |
                                     |                                                                                                                                                            |
                                     |                                                                                                                                                            |
                                     |                                                                                                                                                            |
@@ -50,7 +51,8 @@
                                     --------------------------------------------------------------------------------------------------------------------------------------------------------------
                                     ");
 
-
+                // EingabeFeld für Benutzername 
+                cw
 
                 // PasswordLoginFenster  
                 Console.WriteLine(@$"
@@ -63,7 +65,7 @@
                                     |                                                                                                                                                            |
                                     |                                                         ===== Login ====                                                                                   |
                                     |                                                                                                                                                            | 
-                                    |                                                         Password:                                                                                          |
+                                    |                                                         Password:  {password,-30}                                                                                        |
                                     |                                                                                                                                                            |
                                     |                                                                                                                                                            |
                                     |                                                                                                                                                            |
