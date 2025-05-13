@@ -4,14 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/* Später werde ich die Klassen durchdacht erstellen Ich fokussiere mich erstmal auf das wesentliche Die main Methode
+
 namespace HRManager.Class   
 {       
-    abstract class User
+    abstract internal class User
     {
-        public string Benutzername { get;}
-        public string DomainName { get;}
-        public abstract
+        protected string BenutzerName { get; private set; }
+        protected string DomainName { get; private set; }
+
+        protected string Password { get; private set; }
+
+        private string _passwordVerschlüsselung;
+
+
+        // Konstruktor
+
+        protected User(string benutzerName, string domainName, string password)
+        {
+            BenutzerName = benutzerName;
+            DomainName = domainName;
+            Password = PasswordVerschlüsseln(password);
+        }
+        
+        public abstract void Anmelden();
+
+        private string PasswordVerschlüsseln(string password) 
+        {
+
+        }
+
     }
 }
-*/

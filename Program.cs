@@ -31,7 +31,7 @@
                                     |                                                                                                                                                            |
                                     |                                                         ===== Login ====                                                                                   |
                                     |                                                                                                                                                            | 
-                                    |                                                         Benutzername:  {name,-30}                                                                                    |
+                                    |                                                         Benutzername:  {name,-30}                                                                          |
                                     |                                                                                                                                                            |
                                     |                                                                                                                                                            |
                                     |                                                                                                                                                            |
@@ -52,7 +52,7 @@
                                     ");
 
                 // EingabeFeld für Benutzername 
-                cw
+                
 
                 // PasswordLoginFenster  
                 Console.WriteLine(@$"
@@ -65,7 +65,7 @@
                                     |                                                                                                                                                            |
                                     |                                                         ===== Login ====                                                                                   |
                                     |                                                                                                                                                            | 
-                                    |                                                         Password:  {password,-30}                                                                                        |
+                                    |                                                         Password:  {password,-30}                                                                          |
                                     |                                                                                                                                                            |
                                     |                                                                                                                                                            |
                                     |                                                                                                                                                            |
