@@ -1,4 +1,6 @@
-﻿namespace HRManager
+﻿using System.Xml.Linq;
+
+namespace HRManager
 {
     internal class Program
     {
@@ -6,8 +8,8 @@
         {
             // Globale Variablen
             bool sysEx = false;
-            string benutzername="", domainname="", password="";
-            string name = $"{benutzername}@{domainname}";
+            string benutzerName="", domainName="", password="";
+            string name = $"{benutzerName}@{domainName}";
             Console.WriteLine("Hallo, Manager!");
 
             // Main-Loop als Fußgesteuerte do-while
@@ -20,70 +22,12 @@
                 LadeBalken(1,10); // Methode um Ladeanimation zu simulieren ^^
 
                 // Begrüßungs Methode
-                // BenutzernameLoginFenster
-                Console.WriteLine(@$"
-                                    _____________________________________________________________________________________________________________________________________________________________
-                                    
-                                    |                                      ==================== Menü ===============                                                                             |
-                                    |                                                                                                                                                            |
-                                    |                   Willkommen, um auf die Features Ihres HR-Manager zugreifen zu können, ist ein Anmelde Prozess erforderlich.                              |
-                                    |                   Geben sie nun Ihren Benutzternamen ein...                                                                                                |
-                                    |                                                                                                                                                            |
-                                    |                                                         ===== Login ====                                                                                   |
-                                    |                                                                                                                                                            | 
-                                    |                                                         Benutzername:  {name,-30}                                                                          |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                                                                                                                                                                                
-                                    --------------------------------------------------------------------------------------------------------------------------------------------------------------
-                                    ");
+
 
                 // EingabeFeld für Benutzername 
                 
 
-                // PasswordLoginFenster  
-                Console.WriteLine(@$"
-                                    _____________________________________________________________________________________________________________________________________________________________
-                                    
-                                    |                                      ==================== Menü ===============                                                                             |
-                                    |                                                                                                                                                            |
-                                    |                   Willkommen, um auf die Features Ihres HR-Manager zugreifen zu können, ist ein Anmelde Prozess erforderlich.                              |
-                                    |                   Geben sie nun Ihr Password ein...                                                                                                        |
-                                    |                                                                                                                                                            |
-                                    |                                                         ===== Login ====                                                                                   |
-                                    |                                                                                                                                                            | 
-                                    |                                                         Password:  {password,-30}                                                                          |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                    |                                                                                                                                                            |
-                                                                                                                                                                                                
-                                    --------------------------------------------------------------------------------------------------------------------------------------------------------------
-                                    ");
+
 
 
                 // Methode: Programm-Beenden 
@@ -117,6 +61,83 @@
             return sysEx;
         }
 
+        // Methode für Anzeige Logik 
+        private void BenutzterOberfläche(string benutzername,string domainName, string password)
+        {
 
+            string name = $"{benutzername}@{domainName}";
+            // BenutzernameLoginFenster
+            BenutzterOberflächeAnmeldeNameAnzeige(benutzername, domainName);
+            // PasswordLoginFenster  
+            BenutzterOberflächePasswordAnzeige(password);
+        }
+        private string BenutzterOberflächePasswordAnzeige(string  password)
+        {
+            Console.WriteLine(@$"
+                                    _____________________________________________________________________________________________________________________________________________________________
+                                    
+                                    |                                      ==================== Menü ===============                                                                             |
+                                    |                                                                                                                                                            |
+                                    |                   Willkommen, um auf die Features Ihres HR-Manager zugreifen zu können, ist ein Anmelde Prozess erforderlich.                              |
+                                    |                   Geben sie nun Ihr Password ein...                                                                                                        |
+                                    |                                                                                                                                                            |
+                                    |                                                         ===== Login ====                                                                                   |
+                                    |                                                                                                                                                            | 
+                                    |                                                         Password:  {password,-30}                                                                          |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                                                                                                                                                                                
+                                    --------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                    ");
+            return password;
+        }
+        private string BenutzterOberflächeAnmeldeNameAnzeige(string benutzterName, string domainName)
+        {
+            string name = $"{benutzterName}@{domainName}";
+            // BenutzernameLoginFenster
+            Console.WriteLine(@$"
+                                    _____________________________________________________________________________________________________________________________________________________________
+                                    
+                                    |                                      ==================== Menü ===============                                                                             |
+                                    |                                                                                                                                                            |
+                                    |                   Willkommen, um auf die Features Ihres HR-Manager zugreifen zu können, ist ein Anmelde Prozess erforderlich.                              |
+                                    |                   Geben sie nun Ihren Benutzternamen ein...                                                                                                |
+                                    |                                                                                                                                                            |
+                                    |                                                         ===== Login ====                                                                                   |
+                                    |                                                                                                                                                            | 
+                                    |                                                         Benutzername:  {name,-30}                                                                          |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                    |                                                                                                                                                            |
+                                                                                                                                                                                                
+                                    --------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                    ");
+            return name;
+        }
     }
 }
