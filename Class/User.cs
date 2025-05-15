@@ -34,15 +34,29 @@ namespace HRManager.Class
              * Password = PasswordVerschlüsseln(password);*/
         }
         
-        public abstract void Anmelden();
+        public abstract void Anmelden(string userRolle, string benutzerName, string domainName, string password);
 
-        // Methoden die NUR von der User Klasse  und Admin klasse Vorhanden sind und demnach ausgeführt werden können!!
-
-        /* VerschlüsselungsMethode - auf Eis gelget
-         * private string PasswordVerschlüsseln(string password, byte[] _passwprdVerschlüsselung, byte[] _) 
+        public void BenutzerdatenEinfügen(Dictionary<string, List<Dictionary<string, string>>> zielDict)
         {
-
-        }*/
-
+            if (!zielDict.ContainsKey(Rolle))
+            {
+                zielDict[Rolle] = new List<Dictionary<string, string>>();
+            }
+            var zielDictEintrag = new Dictionary<string, string> {
+                ["benutzerName"] = BenutzerName,
+                ["domainName"] = DomainName,
+                ["rolle"] = Rolle,
+                ["password"] = Password
+            };
+            zielDict[Rolle].Add(zielDictEintrag);
+        }
     }
+
+    // Methoden die NUR von der User Klasse  und Admin klasse Vorhanden sind und demnach ausgeführt werden können!!
+
+    /* VerschlüsselungsMethode - auf Eis gelget
+     * private string PasswordVerschlüsseln(string password, byte[] _passwprdVerschlüsselung, byte[] _) 
+    {
+
+    }*/
 }

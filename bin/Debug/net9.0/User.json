@@ -1,0 +1,34 @@
+{
+  "admin": [
+    {
+      "BenutzerName": "AdminusMaximus",
+      "DomainName": "AdministratusMaximus.local.de",
+      "Password": "p@ssword",
+      "Rolle": "admin"   // Hinzuf�gen der Rolle damit das sp�ter leichter Abrufbar ist 
+    }
+  ],
+  "personalmanager": [
+    {
+      "BenutzerName": "Markus",
+      "DomainName": "manager.local.de",
+      "Password": "personalmanager123",
+      "Rolle": "personalmanager"
+    }
+  ],
+  "it": [
+    {
+      "BenutzerName": "Michael",
+      "DomainName": "it.local.de",
+      "Password": "it123",
+      "Rolle": "it"
+    }
+  ],
+  "verkauf": [
+    {
+      "BenutzerName": "Tanja",
+      "DomainName": "verkauf.local.de",
+      "Password": "verkauf123",
+      "Rolle": "verkauf"
+    }
+  ]
+}
