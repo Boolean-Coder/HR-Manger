@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-
 namespace HRManager.Class
 {
     internal class Admin: User
@@ -38,39 +37,24 @@ namespace HRManager.Class
         // Unser Konstruktor ich nenne  Ihn liebevoll Bob 
         public Admin(string userRolle,string benutzerName,string domainName,string password):base( "admin", benutzerName,domainName,password) 
         {
-            _alleBenutzer = LadenUserJs();
+            _alleBenutzer = base.LadenUserJs();
         }
         // Alle Methoden der Admin Klasse
         public override void Anmelden(string userRolle, string benutzerName, string domainName, string password)
         {
-            _alleBenutzer = LadenUserJs();
-               
-            Console.Write("Benutzername: ");
-            benutzerName = Console.ReadLine() ?? "Leere Eingabe";
-
-            Console.Write("Domainnamen:");
-            domainName = Console.ReadLine() ?? "Leere Eingabe";
-
-            Console.Write("Rolle:");
-            userRolle = Console.ReadLine() ?? "Leere Eingabe";
-
-            Console.Write("Password:");
-            password = Console.ReadLine() ?? "Leere Eingabe";
-
-           var benutzer = BenutzerSuchen(userRolle, benutzerName, domainName);
-            if (benutzer!=null) {
-
-                Console.WriteLine(@$"
+            /* Ich habe die Anmelde Eingaben weider rausgelöscht und die
+             * abstract anmelden Klasse abgeändert weil  hat wenig sinn gemacht 
+             * das hat bereits der Konstruktor für mcih erledigt meine klasse erbt hier 
+             * ja von User methode weiter ausführen und dnUR EINMAL  da ist ja auch der SInn
+             * dahinter so verhindere ich redundanz !!  */
+            Console.WriteLine(@$"
                 Anmeldeprozess durchgeführt
                 Du bist der ÜBER Admin Alle Niederen Klassen unterstehen dir....
                 Wir reden hier natürlich nur von Klassen im Sinne von OOP^^
                 Dein Name {BenutzerName} wird gefürchtet\n Deine Domäne ist: @{DomainName} ");
-                return;
-            }
-            Console.WriteLine(@" Anmeldung Fehlgeschlagen: Benutzername oder Passwort ist falsch");
         }
 
-
+        // BenutzerSuchen
         private Dictionary<string,string>? BenutzerSuchen(string userRolle, string benutzerName, string domainName)
         {
             if ( _alleBenutzer == null || !_alleBenutzer.ContainsKey(userRolle)) { 
@@ -102,7 +86,7 @@ namespace HRManager.Class
                 return;
             }
 
-            var checkBenutzer = BenutzerSuchen(userRolle, benutzerName, domainName);  //
+            var checkBenutzer = BenutzerSuchen(userRolle, benutzerName, domainName);  
             if (checkBenutzer != null) {
                 Console.WriteLine("User Erstellen Error: Benutzter Existiert Bereits.");
                 return;  // Bricht die schleife bzw den Codeblock ab Falls der User bereits in der json auffindbar ist 
@@ -111,13 +95,13 @@ namespace HRManager.Class
             switch (userRolle.ToLower()){
 
                 case "verkauf":
-                    neuerUser = new VerkaufsBereich(userRolle = "verkauf", benutzerName, domainName, password);  // über die in den klassen definieren Konstruktoren werden  dann neue Objekte mit dem variablenNamen neuerUser vergeben
+                    neuerUser = new VerkaufsBereich(userRolle, benutzerName, domainName, password);  // über die in den klassen definieren Konstruktoren werden  dann neue Objekte mit dem variablenNamen neuerUser vergeben
                     break;
                 case "it":
-                    neuerUser = new ITBereich(userRolle = "it", benutzerName, domainName, password);
+                    neuerUser = new ITBereich(userRolle, benutzerName, domainName, password);
                     break;
                 case "personalmanager":
-                    neuerUser = new PersonalManager(userRolle = "personalmanager", benutzerName, domainName, domainName);
+                    neuerUser = new PersonalManager(userRolle, benutzerName, domainName, password);
                     break;
                 case "admin":
                     neuerUser = new Admin(userRolle, benutzerName, domainName, password);
@@ -126,20 +110,17 @@ namespace HRManager.Class
                     Console.WriteLine("User Rolle Error: So eine Rolle ist nicht zu vergeben!");
                     return;
             }
-            var userDict=
-            _alleBenutzer[userRolle].Add(neuerUser.GetUserDict());  // Neuer Dude wird in die Liste geaddet wird aktuell einfach an die letzte Position des Index Feldes angefügt 
+            neuerUser?.BenutzerdatenEinfügen(_alleBenutzer);  // Neuer Dude wird in die Liste geaddet wird aktuell einfach an die letzte Position des Index Feldes angefügt 
             SpeichereBenutzer();
             Console.WriteLine("Benutzer wurde erfolgreich erstellt.");
         }
         private void SpeichereBenutzer() {
-            string json = JsonSerializer.Serialize(_alleBenutzer, jsOptions);
-            File.WriteAllText(UserJsPfad, json);                   // Ich bin Gott so dankbar für die.WriteALLText und .ReadAllText MEthoden xd
+            base.SpeichereBenutzerDaten(_alleBenutzer);               // Das Richtige einsetzten von base.Methodex (Wert  x) spart mehr zeit !!! aber ich hätte mehr Unterrichtszeit gebraucht um das vollends zu meistern
         }
         /*  UserBearbeiten MEthode wird weggelassen
          *  public void UserBearbeiten(string userRolle, string benutzerName, string domainName, string password) {}   
         */
-
-        public void UserLöschen(string userRolle, string benutzerName, string domainName, string password) {
+        public void BenutzerLöschen(string userRolle, string benutzerName, string domainName, string password) {
             
             Console.Write("Geben sie den Benutzernamen  des zu löschenden Benutzters an: ");
             benutzerName = Console.ReadLine() ?? "Leere Eingabe";
@@ -156,42 +137,14 @@ namespace HRManager.Class
 
             // Prüfen ob Benutzer existiert über die Methode benutzer suchen
             var benutzer = BenutzerSuchen(userRolle, benutzerName, domainName);
-            if (benutzer == null) {
-
-                Console.WriteLine("User not Found Error: Löschvorgang abgebrochen.");
-                return;
-            }
-            bool entfernt= _alleBenutzer[userRolle].Remove(benutzer);
-            if (entfernt) {
+            if (benutzer != null && _alleBenutzer[userRolle].Remove(benutzer)) {
                 Console.WriteLine("Benutzer erfolgreich gelöscht");
                 // User.json wird Aktualisiert
                 SpeichereBenutzer();
-
             }
             else { Console.WriteLine("Fehler Beim löschen des Benutzers... Haben sie Keine \"User.json\" ?"); }
 
         }
 
-
-        // Methode um Verschachteltes Dictionary zu erstellen - Grund dadurch spar ich mir viele COdezeilen und Kopfschmerz  und MEthoden hatten wir angesprochen der Retunr ückgabewert auch ist im Prinzip nichts anderes!
-        private Dictionary<string, List<Dictionary<string, string>>> LadenUserJs()
-        {
-            if (!File.Exists(UserJsPfad))
-            {
-                return new Dictionary<string, List<Dictionary<string, string>>>(StringComparer.OrdinalIgnoreCase); // um json Case Sensitivität  zu syncronisieren
-            }
-
-            var json = File.ReadAllText(UserJsPfad);
-
-
-            return JsonSerializer.Deserialize<Dictionary<string, List<Dictionary<string, string>>>>(json, jsOptions)
-                   ?? new Dictionary<string, List<Dictionary<string, string>>>(StringComparer.OrdinalIgnoreCase);
-        }
-        
-        /*  Ursprünglich war die MEthode so aufgebaut
-         *  string json = File.ReadAllText(UserJsPfad); // zum Auslesen für  die JSON 
-            Dictionary<string, List<Dictionary<string, string>>> benutzerListe = JsonSerializer.Deserialize<Dictionary<string, List<Dictionary<string, string>>>>(json);
-            return benutzerListe;*/
-        
     }
 }

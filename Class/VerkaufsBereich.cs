@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HRManager.Class
+﻿namespace HRManager.Class
 {
     internal class VerkaufsBereich: User
     {
@@ -12,9 +6,12 @@ namespace HRManager.Class
 
         // Anmelden override  der abstract Klasse Anmelden Da Sich jede KLasse anmelden muss ist diese mein Grund für das Erstellen einer abstract Methode die der User Class angehört ALLE Klassend er USer Klass MÜSSEN diese Funktion haben
         public void Verkaufen() { Console.WriteLine("Ich Verkaufe Dinge"); } // Wird später evtl noch weitergeführt
-        public override void Anmelden()
+        public override void Anmelden(string userRolle, string benutzerName, string domainName, string password)
         {
-            Console.WriteLine("Verkaufsbereich");
+            Console.WriteLine(@$"
+            Anmeldung erfolgreich.
+            Willkommen Verkäufer: {benutzerName} @{domainName}.
+            Du hast aktuell auf keinen Zugriff.");
         }
     }
 }
