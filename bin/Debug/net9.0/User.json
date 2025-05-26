@@ -4,7 +4,7 @@
       "BenutzerName": "AdminusMaximus",
       "DomainName": "AdministratusMaximus.local.de",
       "Password": "p@ssword",
-      "Rolle": "admin"   // Hinzuf�gen der Rolle damit das sp�ter leichter Abrufbar ist 
+      "Rolle": "admin"   
     }
   ],
   "personalmanager": [
